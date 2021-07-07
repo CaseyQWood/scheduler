@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from 'classnames'
-import Confrim from 'components/Appointment/Confirm'
 
 import "components/Button.scss";
 
