@@ -5,9 +5,11 @@ import Show from './Show'
 import Empty from './Empty'
 import useVisualMode from "hooks/useVisualMode";
 import Form from './Form'
+import getInterviewerForDay from '../../helpers/selectors'
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = 'CREATE'
+
 
 
 export default function Appointment(props) {
@@ -15,6 +17,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+console.log('test',props)
   return(
   <article className="appointment">
     <Header time={props.time}/>
@@ -25,7 +28,7 @@ export default function Appointment(props) {
         interviewer={props.interview.interviewer}
       />
     )}
-    {mode === CREATE && <Form onBack={back} interviewers={props.interviews ? Object.values(props.interviewers) : []}/>}
+    {mode === CREATE && <Form onBack={back} interviewers={props.interviewers ? props.interviewers : []}/>}
   </article>
   )
 }

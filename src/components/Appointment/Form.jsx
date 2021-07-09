@@ -9,7 +9,7 @@ export default function From(props) {
   // manages state for the chosen interviewer
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
 
-  console.log(props)
+  console.log(props.interviewers)
 
   function reset(){ 
     props.onSave(userInput)
