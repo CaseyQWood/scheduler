@@ -4,8 +4,12 @@ import InterviewerList from 'components/InterviewerList'
 import { useState } from "react";
 
 export default function From(props) {
+  // manages state for the input box
   const [userInput, setInput] = useState('')
+  // manages state for the chosen interviewer
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
+
+  console.log(props)
 
   function reset(){ 
     props.onSave(userInput)
@@ -25,7 +29,7 @@ export default function From(props) {
         <form id='myForm' autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            name={props.name}
+            // name={props.name}
             type="text"
             placeholder="Enter Student Name"
             value={userInput}
@@ -40,7 +44,7 @@ export default function From(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>Cancel</Button>
+          <Button danger onClick={props.onBack}>Cancel</Button>
           <Button confirm onClick={reset} >Save</Button>
         </section>
       </section>

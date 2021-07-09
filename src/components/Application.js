@@ -70,11 +70,9 @@ export default function Application() {
   });
 
   const setDay = day => setState(prev => ({ ...prev, day }));
-  // const setDays = days => setState(prev => ({...prev, days}))
   const dailyAppointments = getAppointmentsForDay(state, state.day);
-  // const dailyAppointments = state.appointments
   
-
+// maps out the appointment list 
   const schedule = dailyAppointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview)
     return (
@@ -82,12 +80,14 @@ export default function Application() {
         <Appointment 
           key={state.appointments.id}
           {...appointment}
+          interviewers={state.interviewers}
         />
         <Appointment key="last" time="5pm" />
       </>
     )
   })
 
+// runs a call to each of the DB and then assigns all the values of days,appointments and interviewers to state
   useEffect(() => {
     Promise.all([daysApi(), appointmentsApi(), interviewersApi()])
     .then((results) => {
