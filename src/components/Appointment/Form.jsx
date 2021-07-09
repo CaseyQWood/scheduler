@@ -4,24 +4,27 @@ import InterviewerList from 'components/InterviewerList'
 import { useState } from "react";
 
 export default function From(props) {
-  // manages state for the input box
-  const [userInput, setInput] = useState('')
+  // manages state for the input box (NAME)
+  const [userName, setName] = useState('')
   // manages state for the chosen interviewer
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
 
-  console.log(props.interviewers)
-
+  //when Save button is clicked it resets the values int he input field
   function reset(){ 
-    props.onSave(userInput)
-    setInput('');
+    // props.onSave(userName)
+    props.save(userName, interviewer)
+    setName('');
     setInterviewer(null) 
   }
-
   function cancel() {
-    setInput('');
+    setName('');
     setInterviewer(null) 
     props.onCancel()
   }
+
+  console.log('userName',userName)
+  console.log('selected interviewer',interviewer)
+  
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -32,11 +35,11 @@ export default function From(props) {
             // name={props.name}
             type="text"
             placeholder="Enter Student Name"
-            value={userInput}
+            value={userName}
 
-            // this updates the value of userInput by pulling it every time a change happens
+            // this updates the value of userName by pulling it every time a change happens
             //the value needed is inside the event.target.value
-            onChange={event => {setInput(event.target.value)}}
+            onChange={event => {setName(event.target.value)}}
 
           />
         </form>

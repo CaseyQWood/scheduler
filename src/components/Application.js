@@ -68,8 +68,13 @@ export default function Application() {
     appointments: appointments,
     interviewers: {}
   });
-
   const setDay = day => setState(prev => ({ ...prev, day }));
+
+  const bookInterview = (id, interview) => {
+    console.log(id, interview);
+  };
+
+ // these functions grab the appointments and the interviewers for that day once its selected from the list of days
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewerForDay(state, state.day)
   
@@ -84,6 +89,7 @@ export default function Application() {
           time={appointment.time}
           interview={interview}
           interviewers={dailyInterviewers}
+          bookInterview={bookInterview}
         /> 
       </>
     )
