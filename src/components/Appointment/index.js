@@ -15,13 +15,15 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
+//  console.log('check for id ',props)
   const save = (name, interviewer) => {
     const interview = {
-      student: name,
-      interviewer
+      interviewer,
+      student: name
     }
-    console.log('save result',interview)
+    props.bookInterview(props.id, interview)
+    // props.bookInterview(...Object.values(interview))
+    console.log('save result',props.id ,interview)
   };
 
   return(

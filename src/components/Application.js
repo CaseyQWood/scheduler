@@ -71,7 +71,11 @@ export default function Application() {
   const setDay = day => setState(prev => ({ ...prev, day }));
 
   const bookInterview = (id, interview) => {
-    console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    console.log('BookInterview', appointment);
   };
 
  // these functions grab the appointments and the interviewers for that day once its selected from the list of days
