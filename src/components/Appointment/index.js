@@ -5,7 +5,6 @@ import Show from './Show'
 import Empty from './Empty'
 import useVisualMode from "hooks/useVisualMode";
 import Form from './Form'
-import getInterviewerForDay from '../../helpers/selectors'
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = 'CREATE'
@@ -17,7 +16,6 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-console.log('test',props)
   return(
   <article className="appointment">
     <Header time={props.time}/>

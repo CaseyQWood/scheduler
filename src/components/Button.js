@@ -5,7 +5,6 @@ import "components/Button.scss";
 
 export default function Button(props) {
    // let buttonClass = 'button'
-   // console.log(props)
 
    // if (props.confirm) { 
    //    buttonClass += " button--confirm";

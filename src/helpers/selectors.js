@@ -13,8 +13,6 @@ export function getAppointmentsForDay(state, day) {
     }
     
   });
-
-  console.log(testArray)
   return testArray
 }
 
