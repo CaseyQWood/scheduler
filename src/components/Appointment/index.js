@@ -12,18 +12,18 @@ const CREATE = 'CREATE'
 
 
 export default function Appointment(props) {
+  console.log('chace',props.time )
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-//  console.log('check for id ',props)
+
   const save = (name, interviewer) => {
     const interview = {
       interviewer,
       student: name
     }
     props.bookInterview(props.id, interview)
-    // props.bookInterview(...Object.values(interview))
-    console.log('save result',props.id ,interview)
+    transition(SHOW)
   };
 
   return(
@@ -32,11 +32,12 @@ export default function Appointment(props) {
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
     {mode === SHOW && (
       <Show
-        student={props.interview.student}
-        interviewer={props.interview.interviewer}
+        interview={props.interview}
+        aptId={props.id}
+        // interviewer={props.interview.interviewer.name}
       />
     )}
-    {mode === CREATE && <Form save={save} onBack={back} interviewers={props.interviewers ? props.interviewers : []}/>}
+    {mode === CREATE && <Form onSave={save} onBack={back} interviewers={props.interviewers ? props.interviewers : []}/>}
   </article>
   )
 }

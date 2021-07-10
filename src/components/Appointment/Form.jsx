@@ -10,21 +10,20 @@ export default function From(props) {
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
 
   //when Save button is clicked it resets the values int he input field
+
+  
   function reset(){ 
-    // props.onSave(userName)
-    props.save(userName, interviewer)
     setName('');
     setInterviewer(null) 
   }
   function cancel() {
-    setName('');
-    setInterviewer(null) 
+    reset()
     props.onCancel()
   }
 
-  console.log('userName',userName)
-  console.log('selected interviewer',interviewer)
-  
+  const save = () => {
+    props.onSave(userName, interviewer)
+  }  
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -42,13 +41,14 @@ export default function From(props) {
             onChange={event => {setName(event.target.value)}}
 
           />
+          {userName}
         </form>
         <InterviewerList interviewers={props.interviewers} selectedInterviewer={interviewer} setInterviewer={setInterviewer} />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={props.onBack}>Cancel</Button>
-          <Button confirm onClick={reset} >Save</Button>
+          <Button danger onClick={cancel}>Cancel</Button>
+          <Button confirm onClick={save} >Save</Button>
         </section>
       </section>
     </main>
