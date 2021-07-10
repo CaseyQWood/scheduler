@@ -69,7 +69,6 @@ export default function Application() {
     interviewers: {}
   });
 
-  console.log('DOES THIS MUTATE',state)
   const setDay = day => setState(prev => ({ ...prev, day }));
 
   const bookInterview = (id, interview) => {
@@ -84,14 +83,32 @@ export default function Application() {
       [id]: appointment
     };
 
-    setState({...state, appointments})
-
-    axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
+    return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then((res) => {
       setState({...state, appointments})
     })
 
   };
+
+  const deleteInterview = (id) => {
+  
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    }
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    }
+
+    
+    return axios.delete(`http://localhost:8001/api/appointments/${id}`)
+    .then(() => {
+      setState({...state, appointments})
+    })
+  }
 
  // these functions grab the appointments and the interviewers for that day once its selected from the list of days
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -99,7 +116,6 @@ export default function Application() {
   
 // maps out the appointment list 
   const schedule = dailyAppointments.map((appointment) => {
-    console.log('id',appointment.time)
     const interview = getInterview(state, appointment.interview)
     return (
       <>
@@ -110,6 +126,7 @@ export default function Application() {
           interview={interview}
           interviewers={dailyInterviewers}
           bookInterview={bookInterview}
+          deleteInterview={deleteInterview}
         /> 
       </>
     )
