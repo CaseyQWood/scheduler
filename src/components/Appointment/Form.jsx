@@ -18,7 +18,7 @@ export default function From(props) {
   }
   function cancel() {
     reset()
-    props.onCancel()
+    props.onBack()
   }
 
   const save = () => {
@@ -33,7 +33,7 @@ export default function From(props) {
             className="appointment__create-input text--semi-bold"
             // name={props.name}
             type="text"
-            placeholder="Enter Student Name"
+            placeholder={props.studentName ? props.studentName : "Enter Student Name"}
             value={userName}
 
             // this updates the value of userName by pulling it every time a change happens
@@ -41,9 +41,9 @@ export default function From(props) {
             onChange={event => {setName(event.target.value)}}
 
           />
-          {userName}
+          Student
         </form>
-        <InterviewerList interviewers={props.interviewers} selectedInterviewer={interviewer} setInterviewer={setInterviewer} />
+        <InterviewerList interviewers={props.interviewers} selectedInterviewer={interviewer} setInterviewer={setInterviewer} currentInterviewer={props.currentInterviewer}/>
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
