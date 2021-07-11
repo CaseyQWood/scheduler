@@ -2,6 +2,23 @@ import React from 'react'
 import InterviewListItem from './InterviewListItem'
 import "components/InterviewerList.scss"
 
+/*
+Interviewer list creation hook:
+
+  Parent: /appointments/Form.jsx
+  Children: /InterviewListItem.jsx
+  
+  Generates the JSX to display the list of interviewers available to select.
+
+  Props:
+  - interviewers:        [required]  <Array>     Objects for each of the interviewers values (id, name, avatar)
+  - selectedInterviewer: [required]  <Integer>   Id of selected interviewer
+  - setInterviewer       [required]  <Function>  Set the state for selected interviewer
+
+  Use: 
+  -  <InterviewerList interviewers={<source>} selectedInterviewer={<source>} setInterviewer={<source>} currentInterviewer={<source>}/>
+
+*/
 
 export default function interviewerList(props) {
 

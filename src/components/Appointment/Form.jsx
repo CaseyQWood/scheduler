@@ -4,7 +4,6 @@ import InterviewerList from 'components/InterviewerList'
 import { useState } from "react";
 
 export default function Form(props) {
-  console.log(props.currentInterviewer)
   // manages state for the input box (NAME)
   const [userName, setName] = useState(props.studentName ? props.studentName : '')
   // manages state for the chosen interviewer
@@ -41,7 +40,7 @@ export default function Form(props) {
           />
           Student
         </form>
-        <InterviewerList interviewers={props.interviewers} selectedInterviewer={interviewer} setInterviewer={setInterviewer} currentInterviewer={props.currentInterviewer}/>
+        <InterviewerList interviewers={props.interviewers} selectedInterviewer={interviewer} setInterviewer={setInterviewer}/>
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
