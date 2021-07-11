@@ -89,7 +89,6 @@ export default function useApplicationData() {
     .then((res) => {
     setState({...state, appointments, days: state.days})
     })
-
   };
 
   const deleteInterview = (id) => {

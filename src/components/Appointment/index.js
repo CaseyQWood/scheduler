@@ -19,7 +19,7 @@ const ERROR_SAVE = 'ERROR_SAVE';
 const ERROR_DELETE = 'ERROR_DELETE';
 
 /*
-Day list creation hook:
+Appointment component hook:
 
   Parent: Application.jsx
   Children: 
@@ -33,11 +33,11 @@ Day list creation hook:
   Generates the JSX to display the list of days (Mon-Fri) along with the remaining spots.
 
   Props:
-  - id   [required]  <Integer>     Key assigned when component is mapped 
-  - time    [required]  <String>    Time slot of the day  
-  - interview [required] <Object>  If there is a booked interview includes values if not will be NULL
-  - interviewers [required] <Array>  List of available interviewers for that day with their key/values ({id, name, avatar})
-  - bookInterview  [required]  <Function>  updates state and DB when saving interview, arguments -> (id, interview, update)
+  - id               [required]  <Integer>   Key assigned when component is mapped 
+  - time             [required]  <String>    Time slot of the day  
+  - interview        [required]  <Object>    If there is a booked interview includes values if not will be NULL
+  - interviewers     [required]  <Array>     List of available interviewers for that day with their key/values ({id, name, avatar})
+  - bookInterview    [required]  <Function>  updates state and DB when saving interview, arguments -> (id, interview, update)
   - deleteInterview  [required]  <Function>  updates state and DB when deleting interview, arguments -> (id)
 
 
@@ -57,7 +57,7 @@ Day list creation hook:
 */
 
 export default function Appointment(props) {
-  console.log('props', props)
+
   // manages transitioning between components and the history of client moves
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
