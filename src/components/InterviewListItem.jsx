@@ -18,16 +18,15 @@ Interviewer list Item creation hook:
 
   Use: 
   - <InterviewListItem 
-      key={person.id}
-      name={person.name}
-      avatar={person.avatar}
-      selected={props.selectedInterviewer === person.id}
-      setInterviewer={() => {props.setInterviewer(person.id)}}
+      key={<source>}
+      name={<source>}
+      avatar={<source>}
+      selected={<source>}
+      setInterviewer={<source>}
     />
 */
 
 export default function interviewListItem(props) {
-  console.log('comments',props)
 
   const className = classnames(
     "interviewers__item",

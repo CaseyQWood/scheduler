@@ -2,6 +2,29 @@ import React from "react";
 import 'components/DayListItem.scss'
 import classnames from 'classnames'
 
+/*
+Day list Item creation hook:
+
+  Parent: DayList.jsx
+  Children: None
+  
+  Generates the JSX to display the selected day.
+
+  Props:
+  - name:      [required]  <String>    name of the day
+  - spots:     [required]  <Integer>   number of remaining spots available
+  - selected:  [required]  <Boolean>   Declares that day as selected 
+  - setDay     [required]  <Function>  Set the state for selected day
+
+  Use: 
+  - <DayListItem
+      key={<source>}
+      name={<source>}
+      spots={<source>}
+      selected={<source> === <source>}
+      setDay={<source>}
+    />
+*/
 
 export default function DayListItem(props) {
 
@@ -18,7 +41,7 @@ export default function DayListItem(props) {
   })
 
   return (
-    <li key={props.id} onClick={() => props.setDay(props.name)} className={listClass}>
+    <li onClick={() => props.setDay(props.name)} className={listClass}>
       <h2 className="text--regular">{props.name}</h2> 
       <h3 className="text--light">{formatSpots(props.spots)}</h3>
     </li>
