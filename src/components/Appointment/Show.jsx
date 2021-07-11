@@ -1,7 +1,33 @@
 import React from 'react'
 
-export default function Show(props) {
+/*
+Appointment component hook:
 
+  Parent: Index.jsx
+  Children: None
+
+  Generates the JSX to display booked appointment info with options to cancel apt or edit it
+
+  Props:
+  - aptId      [required]  <Integer>   Unique id for specific appointment
+  - interview  [required]  <Object>    If there is a booked interview includes values if not will be NULL
+  - onDelete   [required]  <Function>  Call to remove appointment from state and DB, arguments: (aptId)
+  - onCreate   [required]  <Function>  Call to add appointment to state and DB
+
+
+  Props Objects Values:
+  -interview { student, interviewer{id, name, avatar}}
+
+  Use: 
+  - <Show
+        interview={<source>}
+        aptId={<source>}
+        onDelete={() => <source>}
+        onEdit={() => <source>}
+      /> 
+*/
+
+export default function Show(props) {
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

@@ -8,14 +8,11 @@ Form component hook:
 
   Parent: Index.jsx
   Children: 
-  - Header.jsx
-  - Empty.jsx
-  - Show.jsx
-  - Status.jsx
-  - Form.jsx
-  - Error.jsx
+  - InterviewerList.jsx
+  - Button.jsx
+
   
-  Generates the JSX to display the form component with input box, buttons, optional interviewers
+  Generates the JSX to display the form component with input box, buttons, optional interviewers, save and cancel buttons
 
   Props:
   - currentInterviewer  [optional]  <Object> if form load from edit includes the selected interviewer

@@ -1,7 +1,21 @@
 import React from 'react'
 
-export default function Status(props) {
+/*
+Loading screen component hook:
 
+  Parent: Index.jsx
+  Children: None
+ 
+  Generates the JSX to display the loading icon for async actions
+
+  Props:
+  - currentInterviewer  [required]  <String> changes on what is loading (saving or deleting)
+
+  Use: 
+  - <Status message={<source>}/> 
+*/
+
+export default function Status(props) {
   return (
     <main className="appointment__card appointment__card--status">
       <img

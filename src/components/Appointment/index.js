@@ -109,7 +109,8 @@ export default function Appointment(props) {
       <Form 
         onSave={save} 
         onBack={back} 
-        interviewers={props.interviewers ? props.interviewers : []}/>
+        interviewers={props.interviewers ? props.interviewers : []}
+      />
     )}
 
     {mode === CONFIRM && (
@@ -117,7 +118,8 @@ export default function Appointment(props) {
         message={'would you like to delete this appointment ?'} 
         onDelete={deleteApt} 
         aptId={props.id} 
-        onCancel={() => {back()}}/>
+        onCancel={() => {back()}}
+      />
     )}
 
     {mode === EDIT && (
@@ -127,7 +129,8 @@ export default function Appointment(props) {
         onBack={back} 
         interviewers={props.interviewers ? props.interviewers : []} 
         studentName={props.interview ? props.interview.student : null} 
-        currentInterviewer={props.interview ? props.interview.interviewer : null}/>
+        currentInterviewer={props.interview ? props.interview.interviewer : null}
+      />
     )}
   
   </article>
