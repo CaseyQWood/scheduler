@@ -4,10 +4,11 @@ import InterviewerList from 'components/InterviewerList'
 import { useState } from "react";
 
 export default function Form(props) {
+  console.log(props.currentInterviewer)
   // manages state for the input box (NAME)
-  const [userName, setName] = useState('')
+  const [userName, setName] = useState(props.studentName ? props.studentName : '')
   // manages state for the chosen interviewer
-  const [interviewer, setInterviewer] = useState(props.interviewer || null)
+  const [interviewer, setInterviewer] = useState(props.currentInterviewer ? props.currentInterviewer.id : null)
 
   //when Save button is clicked it resets the values int he input field
   function reset(){ 
@@ -20,7 +21,6 @@ export default function Form(props) {
   }
 
   const save = () => {
-
     props.onSave(userName, interviewer, props.editBoolean)
   }  
 
@@ -30,9 +30,8 @@ export default function Form(props) {
         <form id='myForm' autoComplete="off" onSubmit={event => event.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            // name={props.name}
             type="text"
-            placeholder={props.studentName ? props.studentName : "Enter Student Name"}
+            placeholder="Enter Student Name"
             value={userName}
 
             // this updates the value of userName by pulling it every time a change happens
