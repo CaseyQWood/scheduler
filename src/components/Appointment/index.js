@@ -18,9 +18,47 @@ const EDIT = 'EDIT';
 const ERROR_SAVE = 'ERROR_SAVE';
 const ERROR_DELETE = 'ERROR_DELETE';
 
+/*
+Day list creation hook:
 
+  Parent: Application.jsx
+  Children: 
+  - Header.jsx
+  - Empty.jsx
+  - Show.jsx
+  - Status.jsx
+  - Form.jsx
+  - Error.jsx
+  
+  Generates the JSX to display the list of days (Mon-Fri) along with the remaining spots.
+
+  Props:
+  - id   [required]  <Integer>     Key assigned when component is mapped 
+  - time    [required]  <String>    Time slot of the day  
+  - interview [required] <Object>  If there is a booked interview includes values if not will be NULL
+  - interviewers [required] <Array>  List of available interviewers for that day with their key/values ({id, name, avatar})
+  - bookInterview  [required]  <Function>  updates state and DB when saving interview, arguments -> (id, interview, update)
+  - deleteInterview  [required]  <Function>  updates state and DB when deleting interview, arguments -> (id)
+
+
+  Props Objects Values:
+  -interview { student, interviewer{id, name, avatar}}
+
+  Use: 
+  - <Appointment 
+      key={<source>}
+      id={<source>}
+      time={<source>}
+      interview={<source>}
+      interviewers={<source>}
+      bookInterview={<source>}
+      deleteInterview={<source>}
+    /> 
+*/
 
 export default function Appointment(props) {
+  console.log('props', props)
+  // manages transitioning between components and the history of client moves
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -50,7 +88,14 @@ export default function Appointment(props) {
   return(
   <article className="appointment">
     <Header time={props.time}/>
+
+    {mode === SAVING && <Status message={'Saving'}/>}
+    {mode === DELETING && <Status message={'Deleting'}/>}
+
     {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
+    {mode === ERROR_SAVE && <Error message={'Sorry, unable to save appointment'} onClose={back}/>}
+    {mode === ERROR_DELETE && <Error message={'Sorry, unable to delete appointment'} onClose={back}/>}
+    
     {mode === SHOW && (
       <Show
         interview={props.interview}
@@ -59,15 +104,32 @@ export default function Appointment(props) {
         onEdit={() => transition(EDIT)}
       />
     )}
-    {mode === SAVING && <Status message={'Saving'}/>}
-    {mode === DELETING && <Status message={'Deleting'}/>}
 
+    {mode === CREATE && (
+      <Form 
+        onSave={save} 
+        onBack={back} 
+        interviewers={props.interviewers ? props.interviewers : []}/>
+    )}
 
-    {mode === CONFIRM && <Confirm message={'would you like to delete this appointment ?'} onDelete={deleteApt} aptId={props.id} onCancel={() => {back()}}/>}
-    {mode === CREATE && <Form onSave={save} onBack={back} interviewers={props.interviewers ? props.interviewers : []}/>}
-    {mode === EDIT && <Form editBoolean={true} onSave={save} onBack={back} interviewers={props.interviewers ? props.interviewers : []} studentName={props.interview ? props.interview.student : null} currentInterviewer={props.interview ? props.interview.interviewer : null}/>}
-    {mode === ERROR_SAVE && <Error message={'Sorry, unable to save appointment'} onClose={back}/>}
-    {mode === ERROR_DELETE && <Error message={'Sorry, unable to delete appointment'} onClose={back}/>}
+    {mode === CONFIRM && (
+      <Confirm 
+        message={'would you like to delete this appointment ?'} 
+        onDelete={deleteApt} 
+        aptId={props.id} 
+        onCancel={() => {back()}}/>
+    )}
+
+    {mode === EDIT && (
+      <Form 
+        editBoolean={true} 
+        onSave={save} 
+        onBack={back} 
+        interviewers={props.interviewers ? props.interviewers : []} 
+        studentName={props.interview ? props.interview.student : null} 
+        currentInterviewer={props.interview ? props.interview.interviewer : null}/>
+    )}
+  
   </article>
   )
 }

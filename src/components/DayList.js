@@ -23,7 +23,6 @@ Day list creation hook:
 */
 
 export default function DayList(props) {
-  console.log('comments', props)
 
   const days = props.days.map((day, index) => {
     return (
