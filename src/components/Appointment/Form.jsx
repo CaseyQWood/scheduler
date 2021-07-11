@@ -3,15 +3,13 @@ import Button from '../Button'
 import InterviewerList from 'components/InterviewerList'
 import { useState } from "react";
 
-export default function From(props) {
+export default function Form(props) {
   // manages state for the input box (NAME)
   const [userName, setName] = useState('')
   // manages state for the chosen interviewer
   const [interviewer, setInterviewer] = useState(props.interviewer || null)
 
   //when Save button is clicked it resets the values int he input field
-
-  
   function reset(){ 
     setName('');
     setInterviewer(null) 
@@ -22,7 +20,8 @@ export default function From(props) {
   }
 
   const save = () => {
-    props.onSave(userName, interviewer)
+
+    props.onSave(userName, interviewer, props.editBoolean)
   }  
 
   return (

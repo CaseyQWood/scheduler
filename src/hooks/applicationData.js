@@ -65,9 +65,15 @@ export default function useApplicationData() {
     appointments: appointments,
     interviewers: {}
   });
+
   const setDay = day => setState(prev => ({ ...prev, day }));
 
-  const bookInterview = (id, interview) => {
+  const bookInterview = (id, interview, update) => {
+  
+    const index = state.days.findIndex(day => day.name === state.day)
+    const newCount = update ? state.days[index].spots : state.days[index].spots - 1
+    let newData = state.days
+    newData[index].spots = newCount
 
     const appointment = {
       ...state.appointments[id],
@@ -81,30 +87,35 @@ export default function useApplicationData() {
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then((res) => {
-      setState({...state, appointments})
+    setState({...state, appointments, days: state.days})
     })
 
   };
 
   const deleteInterview = (id) => {
-  
+  // each day has appointment id's (state.days)
+
+    const index = state.days.findIndex(day => day.name === state.day)
+    const newCount = state.days[index].spots + 1
+    let newData = state.days
+    newData[index].spots = newCount
+
     const appointment = {
       ...state.appointments[id],
       interview: null
-    }
+    };
 
     const appointments = {
       ...state.appointments,
       [id]: appointment
-    }
-
+    };
     
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
     .then(() => {
-      setState({...state, appointments})
-    })
-    
-  }
+      setState({...state, appointments, days: newData})
+    })  
+  };
+
   useEffect(() => {
     Promise.all([daysApi(), appointmentsApi(), interviewersApi()])
     .then((results) => {
