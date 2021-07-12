@@ -1,6 +1,7 @@
 import React from 'react'
 import InterviewListItem from './InterviewListItem'
 import "components/InterviewerList.scss"
+import PropTypes from 'prop-types'
 
 /*
 Interviewer list creation hook:
@@ -20,7 +21,7 @@ Interviewer list creation hook:
 
 */
 
-export default function interviewerList(props) {
+function interviewerList(props) {
 
   const listOfInterviewers = props.interviewers.map(
     (person) => {
@@ -42,3 +43,9 @@ export default function interviewerList(props) {
     </section>
   )
 }
+
+interviewerList.propTypes = {
+    interviewers: PropTypes.array.isRequired
+}
+
+export default interviewerList
