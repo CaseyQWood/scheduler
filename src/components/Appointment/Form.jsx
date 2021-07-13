@@ -35,11 +35,12 @@ Form component hook:
 */
 
 export default function Form(props) {
-  console.log('props', props)
+  console.log(props.studentName)
   const [userName, setName] = useState(props.studentName ? props.studentName : '')
   const [interviewer, setInterviewer] = useState(props.currentInterviewer ? props.currentInterviewer.id : null)
+  const [error, setError] = useState("");
 
-  //when Save button is clicked it resets the values in the input field
+
   function reset(){ 
     setName('');
     setInterviewer(null) 
@@ -48,10 +49,19 @@ export default function Form(props) {
     reset()
     props.onBack()
   }
+  // const save = () => {
+  //   props.onSave(userName, interviewer, props.editBoolean)
+  // }  
+  function validate(param) {
+    if (param === "") {
+      setError("Student name cannot be blank");
+      return;
+    }
 
-  const save = () => {
-    props.onSave(userName, interviewer, props.editBoolean)
-  }  
+  
+    setError("")
+    props.onSave(userName, interviewer, props.editBoolean);
+  }
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -66,16 +76,18 @@ export default function Form(props) {
             // this updates the value of userName by pulling it every time a change happens
             //the value needed is inside the event.target.value
             onChange={event => {setName(event.target.value)}}
+            data-testid="student-name-input"
+
 
           />
-          Student
+          <section className="appointment__validation">{error}</section>
         </form>
         <InterviewerList interviewers={props.interviewers} selectedInterviewer={interviewer} setInterviewer={setInterviewer}/>
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={save} >Save</Button>
+          <Button confirm onClick={() => validate(userName)} >Save</Button>
         </section>
       </section>
     </main>

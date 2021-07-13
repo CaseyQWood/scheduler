@@ -69,7 +69,6 @@ export default function useApplicationData() {
   const setDay = day => setState(prev => ({ ...prev, day }));
 
   const bookInterview = (id, interview, update) => {
-  
     const index = state.days.findIndex(day => day.name === state.day)
     const newCount = update ? state.days[index].spots : state.days[index].spots - 1
     let newData = state.days
@@ -84,11 +83,16 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    console.log("BEFORE: ", state.days[0].spots)
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then((res) => {
     setState({...state, appointments, days: state.days})
+    console.log("AFTER: ", state.days[0].spots)
+
     })
+    
+
   };
 
   const deleteInterview = (id) => {
