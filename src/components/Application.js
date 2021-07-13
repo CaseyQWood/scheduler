@@ -13,26 +13,23 @@ export default function Application() {
     deleteInterview
   } = useApplicationData();
 
-
  // these functions grab the appointments and the interviewers for that day once its selected from the list of days
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewerForDay(state, state.day)
   
 // maps out the appointment list 
-  const schedule = dailyAppointments.map((appointment) => {
+  const schedule = dailyAppointments.map((appointment, index) => {
     const interview = getInterview(state, appointment.interview)
     return (
-      <>
-        <Appointment 
-          key={appointment.id}
-          id={appointment.id}
-          time={appointment.time}
-          interview={interview}
-          interviewers={dailyInterviewers}
-          bookInterview={bookInterview}
-          deleteInterview={deleteInterview}
-        /> 
-      </>
+      <Appointment 
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+        interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
+        deleteInterview={deleteInterview}
+      /> 
     )
   })
 

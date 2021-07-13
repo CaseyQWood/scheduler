@@ -57,7 +57,6 @@ Appointment component hook:
 */
 
 export default function Appointment(props) {
-
   // manages transitioning between components and the history of client moves
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY

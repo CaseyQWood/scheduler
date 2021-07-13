@@ -39,19 +39,19 @@ const urlAppointments = 'http://localhost:8001/api/appointments'
 const urlInterviewers = 'http://localhost:8001/api/interviewers'
 
 const daysApi = () => {
-  return axios(urlDays)
+  return axios.get(urlDays)
   .then((results) => {
     return results
   })
 }
 const appointmentsApi = () => {
-  return axios(urlAppointments)
+  return axios.get(urlAppointments)
   .then((results) => {
     return results
   })
 }
 const interviewersApi = () => {
-  return axios(urlInterviewers)
+  return axios.get(urlInterviewers)
   .then((results) => {
     return results
   })
@@ -83,20 +83,15 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    console.log("BEFORE: ", state.days[0].spots)
 
     return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then((res) => {
     setState({...state, appointments, days: state.days})
-    console.log("AFTER: ", state.days[0].spots)
-
     })
     
-
   };
 
   const deleteInterview = (id) => {
-  // each day has appointment id's (state.days)
 
     const index = state.days.findIndex(day => day.name === state.day)
     const newCount = state.days[index].spots + 1
