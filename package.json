@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
+    "cypress": "^7.7.0",
     "dat.gui": "^0.7.7",
     "normalize.css": "^8.0.1",
     "react": "^16.9.0",
@@ -17,7 +18,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "cypress": "cypress open -P ."
   },
   "browserslist": {
     "production": [
@@ -42,6 +44,7 @@
     "@testing-library/react": "^8.0.7",
     "@testing-library/react-hooks": "^7.0.1",
     "babel-loader": "^8.0.5",
+    "eslint-plugin-cypress": "^2.11.3",
     "node-sass": "^4.14.0",
     "prop-types": "^15.7.2",
     "react-test-renderer": "^16.9.0"
