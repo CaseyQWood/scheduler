@@ -6,14 +6,14 @@ export function getAppointmentsForDay(state, day) {
     }
   }
 
-  let testArray = []
+  let finalArray = []
   selectedDay.forEach(elementId => {
     if (state.appointments[elementId]) {
-      testArray.push(state.appointments[elementId])
+      finalArray.push(state.appointments[elementId])
     }
     
   });
-  return testArray
+  return finalArray
 
 }
 
@@ -31,10 +31,10 @@ export function getInterviewerForDay(state, day) {
     }
   }
 
-  let testArray = []
+  let finalArray = []
   selectedInterviewer.forEach(elementId => {
-    testArray.push(state.interviewers[elementId])
+    finalArray.push(state.interviewers[elementId])
   });
 
-  return testArray 
+  return finalArray 
 }

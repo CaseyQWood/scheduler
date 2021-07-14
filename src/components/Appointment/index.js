@@ -85,7 +85,7 @@ export default function Appointment(props) {
   }
 
   return(
-  <article className="appointment">
+  <article className="appointment" data-testid="appointment">
     <Header time={props.time}/>
 
     {mode === SAVING && <Status message={'Saving'}/>}
@@ -107,14 +107,14 @@ export default function Appointment(props) {
     {mode === CREATE && (
       <Form 
         onSave={save} 
-        onBack={back} 
+        onBack={() => back()} 
         interviewers={props.interviewers ? props.interviewers : []}
       />
     )}
 
     {mode === CONFIRM && (
       <Confirm 
-        message={'would you like to delete this appointment ?'} 
+        message={'Are you sure you would like to delete?'} 
         onDelete={deleteApt} 
         aptId={props.id} 
         onCancel={() => {back()}}
@@ -125,7 +125,7 @@ export default function Appointment(props) {
       <Form 
         editBoolean={true} 
         onSave={save} 
-        onBack={back} 
+        onBack={() => back()} 
         interviewers={props.interviewers ? props.interviewers : []} 
         studentName={props.interview ? props.interview.student : null} 
         currentInterviewer={props.interview ? props.interview.interviewer : null}

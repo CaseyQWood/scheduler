@@ -35,32 +35,31 @@ Form component hook:
 */
 
 export default function Form(props) {
-  console.log(props.studentName)
-  const [userName, setName] = useState(props.studentName ? props.studentName : '')
-  const [interviewer, setInterviewer] = useState(props.currentInterviewer ? props.currentInterviewer.id : null)
+  const [userName, setName] = useState(props.studentName ? props.studentName : '');
+  const [interviewer, setInterviewer] = useState(props.currentInterviewer ? props.currentInterviewer.id : null);
   const [error, setError] = useState("");
 
 
-  function reset(){ 
+  function reset() { 
     setName('');
-    setInterviewer(null) 
-  }
-  function cancel() {
-    reset()
-    props.onBack()
-  }
-  // const save = () => {
-  //   props.onSave(userName, interviewer, props.editBoolean)
-  // }  
-  function validate(param) {
-    if (param === "") {
-      setError("Student name cannot be blank");
+    setInterviewer(null);
+  };
+  const cancel = () => {
+    reset();
+    props.onBack();
+  };
+  function validate(userName, interviewer, editBoolean) {
+    if (userName === "") {
+      setError("student name cannot be blank");
       return;
     }
+    // if (interviewer === null) {
+    //   setError("No interviewer selected");
+    //   return;
+    // }
 
-  
     setError("")
-    props.onSave(userName, interviewer, props.editBoolean);
+    props.onSave(userName, interviewer, editBoolean);
   }
 
   return (
@@ -87,7 +86,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={() => validate(userName)} >Save</Button>
+          <Button confirm onClick={() => validate(userName, interviewer, props.editBoolean)} >Save</Button>
         </section>
       </section>
     </main>
