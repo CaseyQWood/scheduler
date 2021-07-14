@@ -49,14 +49,15 @@ export default function Form(props) {
     props.onBack();
   };
   function validate(userName, interviewer, editBoolean) {
+    console.log(userName, interviewer, editBoolean)
     if (userName === "") {
       setError("student name cannot be blank");
       return;
     }
-    // if (interviewer === null) {
-    //   setError("No interviewer selected");
-    //   return;
-    // }
+    if (interviewer === null) {
+      setError("No interviewer selected");
+      return;
+    }
 
     setError("")
     props.onSave(userName, interviewer, editBoolean);
