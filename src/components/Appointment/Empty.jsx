@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 /*
 Empty appointment hook:
@@ -16,7 +16,6 @@ Empty appointment hook:
 */
 
 export default function Empty(props) {
-
   return (
     <main className="appointment__add">
       <img
@@ -26,5 +25,5 @@ export default function Empty(props) {
         onClick={props.onAdd}
       />
     </main>
-  )
+  );
 }

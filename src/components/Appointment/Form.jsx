@@ -1,6 +1,6 @@
-import React from 'react'
-import Button from '../Button'
-import InterviewerList from 'components/InterviewerList'
+import React from "react";
+import Button from "../Button";
+import InterviewerList from "components/InterviewerList";
 import { useState } from "react";
 
 /*
@@ -35,18 +35,21 @@ Form component hook:
 */
 
 export default function Form(props) {
-  const [userName, setName] = useState(props.studentName ? props.studentName : '');
-  const [interviewer, setInterviewer] = useState(props.currentInterviewer ? props.currentInterviewer.id : null);
+  const [userName, setName] = useState(
+    props.studentName ? props.studentName : ""
+  );
+  const [interviewer, setInterviewer] = useState(
+    props.currentInterviewer ? props.currentInterviewer.id : null
+  );
   const [error, setError] = useState("");
 
-
-  function reset() { 
-    setName('');
+  function reset() {
+    setName("");
     setInterviewer(null);
-  };
+  }
   const cancel = () => {
     reset();
-    setError("")
+    setError("");
     props.onBack();
   };
   function validate(userName, interviewer, editBoolean) {
@@ -59,37 +62,51 @@ export default function Form(props) {
     //   return;
     // }
 
-    setError("")
+    setError("");
     props.onSave(userName, interviewer, editBoolean);
   }
 
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
-        <form id='myForm' autoComplete="off" onSubmit={event => event.preventDefault()}>
+        <form
+          id="myForm"
+          autoComplete="off"
+          onSubmit={(event) => event.preventDefault()}
+        >
           <input
             className="appointment__create-input text--semi-bold"
             type="text"
             placeholder="Enter Student Name"
             value={userName}
-
             // this updates the value of userName by pulling it every time a change happens
             //the value needed is inside the event.target.value
-            onChange={event => {setName(event.target.value)}}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
             data-testid="student-name-input"
-
-
           />
           <section className="appointment__validation">{error}</section>
         </form>
-        <InterviewerList interviewers={props.interviewers} selectedInterviewer={interviewer} setInterviewer={setInterviewer}/>
+        <InterviewerList
+          interviewers={props.interviewers}
+          selectedInterviewer={interviewer}
+          setInterviewer={setInterviewer}
+        />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={() => validate(userName, interviewer, props.editBoolean)} >Save</Button>
+          <Button danger onClick={cancel}>
+            Cancel
+          </Button>
+          <Button
+            confirm
+            onClick={() => validate(userName, interviewer, props.editBoolean)}
+          >
+            Save
+          </Button>
         </section>
       </section>
     </main>
-  )
+  );
 }

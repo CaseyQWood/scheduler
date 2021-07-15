@@ -6,8 +6,7 @@ import Appointment from "../Appointment/index";
 
 afterEach(cleanup);
 
-
-describe('Appointments', () => {
+describe("Appointments", () => {
   it("renders without crashing", () => {
     render(<Appointment />);
   });
@@ -21,11 +20,11 @@ describe('Appointments', () => {
     const fn = jest.fn();
     fn();
     expect(fn).toHaveBeenCalledTimes(1);
-   });
+  });
 
-   it("uses the mock implementation", () => {
+  it("uses the mock implementation", () => {
     const fn = jest.fn((a, b) => 42);
     fn(1, 2);
     expect(fn).toHaveReturnedWith(42);
-   });
-})
+  });
+});
