@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, getByPlaceholderText, getByTestId, fireEvent } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 
 import Form from "components/Appointment/Form";
 
@@ -86,31 +86,30 @@ describe("Form", () => {
     expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", null, undefined);
   });
 
-  // it("calls onCancel and resets the input field", () => {
-  //   const onBack = jest.fn();
-  //   const { getByText, getByPlaceholderText, queryByText } = render(
-  //     <Form
-  //       interviewers={interviewers}
-  //       // name="Lydia Mill-Jones"
-  //       onSave={jest.fn()}
-  //       onBack={() => onBack()}
-  //     />
-  //   );
+  it("calls onCancel and resets the input field", () => {
+    const onBack = jest.fn();
+    const { getByText, getByPlaceholderText, queryByText } = render(
+      <Form
+        interviewers={interviewers}
+        onSave={jest.fn()}
+        onBack={() => onBack()}
+      />
+    );
    
-  //   fireEvent.click(getByText("Save"));
+    fireEvent.click(getByText("Save"));
   
-  //   fireEvent.change(getByPlaceholderText("Enter Student Name"), {
-  //     target: { value: "Lydia Miller-Jones" }
-  //   });
+    fireEvent.change(getByPlaceholderText("Enter Student Name"), {
+      target: { value: "Lydia Miller-Jones" }
+    });
   
-  //   fireEvent.click(getByText("Cancel"));
+    fireEvent.click(getByText("Cancel"));
   
-  //   expect(queryByText(/student name cannot be blank/i)).toBeNull();
+    expect(queryByText(/student name cannot be blank/i)).toBeNull();
   
-  //   expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
+    expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
   
-  //   expect(onBack).toHaveBeenCalledTimes(1);
-  // });
+    expect(onBack).toHaveBeenCalledTimes(1);
+  });
   
 
 });

@@ -97,7 +97,6 @@ export default function useApplicationData() {
     return axios.put(`http://localhost:8001/api/appointments/${id}`, appointment)
     .then((res) => {
     setState({...state, appointments, days: days})
-    console.log("LATER: ", state.days[0].spots)
 
     })
     
@@ -127,7 +126,6 @@ export default function useApplicationData() {
     return axios.delete(`http://localhost:8001/api/appointments/${id}`)
     .then(() => {
       setState({...state, appointments, days: days})
-      console.log("AFTER4: ", state.days[0].spots)
 
     })  
   };
