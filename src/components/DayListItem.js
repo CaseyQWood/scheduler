@@ -1,6 +1,6 @@
 import React from "react";
-import 'components/DayListItem.scss'
-import classnames from 'classnames'
+import "components/DayListItem.scss";
+import classnames from "classnames";
 
 /*
 Day list Item creation hook:
@@ -28,20 +28,25 @@ Day list Item creation hook:
 
 export default function DayListItem(props) {
   const formatSpots = (spots) => {
-    return spots === 0 ? 'no spots remaining'
-    : spots === 1 ? '1 spot remaining'
-    : `${spots} spots remaining`
+    return spots === 0
+      ? "no spots remaining"
+      : spots === 1
+      ? "1 spot remaining"
+      : `${spots} spots remaining`;
+  };
 
-  }
-
-  const listClass = classnames('day-list__item', {
-    'day-list__item--selected': props.selected,
-    'day-list__item--full': props.spots === 0
-  })
+  const listClass = classnames("day-list__item", {
+    "day-list__item--selected": props.selected,
+    "day-list__item--full": props.spots === 0,
+  });
 
   return (
-    <li onClick={() => props.setDay(props.name)} className={listClass} data-testid="day">
-      <h2 className="text--regular">{props.name} </h2> 
+    <li
+      onClick={() => props.setDay(props.name)}
+      className={listClass}
+      data-testid="day"
+    >
+      <h2 className="text--regular">{props.name} </h2>
       <h3 className="text--light">{formatSpots(props.spots)}</h3>
     </li>
   );

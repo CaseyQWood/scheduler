@@ -1,5 +1,5 @@
-import React from 'react'
-import DayListItem from 'components/DayListItem'
+import React from "react";
+import DayListItem from "components/DayListItem";
 
 /*
 Day list creation hook:
@@ -23,7 +23,6 @@ Day list creation hook:
 */
 
 export default function DayList(props) {
-
   const days = props.days.map((day, index) => {
     return (
       <DayListItem
@@ -33,8 +32,8 @@ export default function DayList(props) {
         selected={day.name === props.day}
         setDay={props.setDay}
       />
-    )
-  })
+    );
+  });
 
-  return days
+  return days;
 }

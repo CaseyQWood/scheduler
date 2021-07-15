@@ -1,6 +1,6 @@
 import React from "react";
-import 'components/InterviewListItem.scss'
-import classnames from 'classnames'
+import "components/InterviewListItem.scss";
+import classnames from "classnames";
 
 /*
 Interviewer list Item creation hook:
@@ -27,20 +27,18 @@ Interviewer list Item creation hook:
 */
 
 export default function interviewListItem(props) {
-
-  const className = classnames(
-    "interviewers__item",
-    {'interviewers__item--selected': props.selected
-  })
+  const className = classnames("interviewers__item", {
+    "interviewers__item--selected": props.selected,
+  });
 
   return (
-  <li className={className} onClick={props.setInterviewer}>
-    <img
-      className="interviewers__item-image"
-      src={props.avatar}
-      alt={props.name}
-    />
-    {props.selected && props.name}
-  </li>
-  )
+    <li className={className} onClick={props.setInterviewer}>
+      <img
+        className="interviewers__item-image"
+        src={props.avatar}
+        alt={props.name}
+      />
+      {props.selected && props.name}
+    </li>
+  );
 }
